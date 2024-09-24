@@ -1,8 +1,8 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -18,10 +18,27 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gradient-background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 0%, #AADEEF 100%);
+}
+
+body {
+  background: var(--gradient-background);
+  min-height: 100vh;
+}
+
+/* You can also create a utility class for reuse */
+.bg-gradient {
+  background: var(--gradient-background);
 }
 
 @layer utilities {
   .text-balance {
-    text-wrap: balance;
+    overflow-wrap: break-word; /* or word-wrap: break-word; */
   }
 }
