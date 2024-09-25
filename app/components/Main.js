@@ -19,8 +19,8 @@ function Main() {
                     saving you time and helping you find the perfect candidates and for candidate interview preparation dashboard.
                 </div>
             </div>
-            <div className='flex flex-col mr-36 md:flex-row mt-0 space-x-8  md:mt-20 lg:mt-0 text-black'>
-                <div className='flex flex-col items-center justify-center w-[350px] h-[500px] md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[480px] bg-[#DEF9FF] mt-16 rounded-xl mx-auto md:mx-4 lg:ml-40'>
+            <div className='flex flex-col mr-36 lg:flex-row mt-0  lg:ml-24 md:ml-0 ml-auto md:mt-20 lg:mt-0 text-black'>
+                <div className='flex flex-col items-center justify-center w-[350px] h-[500px] md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[480px] bg-[#DEF9FF] mt-16 rounded-xl ml-5 md:ml-28 lg:ml-28'>
                     <Image src='/assets/Group 39.png' width={200} height={300} />
                     <p className='text-center text-3xl font-bold text-blue-500'>Resume Shortlisting</p>
                     <div className="text-center text-muted-foreground w-3/4 md:text-lg mt-1">
@@ -31,7 +31,7 @@ function Main() {
                     </button>
                 </div>
 
-                <div className='flex flex-col items-center justify-center w-[350px] h-[500px] mb-10 md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[480px] bg-[#DEF9FF] mt-16 rounded-xl mx-auto md:mx-4 lg:ml-40'>
+                <div className='flex flex-col items-center justify-center w-[350px] h-[500px] mb-10 md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[480px] bg-[#DEF9FF] mt-16 rounded-xl  ml-5 md:ml-28 lg:ml-40'>
                     <Image src='/assets/Group 40.png' width={230} height={400} />
                     <p className='text-center text-3xl font-bold text-blue-500'>Interview Prep</p>
                     <div className="text-center text-muted-foreground w-3/4 md:text-lg mt-1">

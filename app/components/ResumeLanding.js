@@ -20,7 +20,7 @@ function ResumeLanding() {
                             SmartHire: Resume Shortlisting
                         </h1>
                         <div className="flex flex-col object-contain items-end  mr-16">
-                            <p className="text-lg text-gray-600 max-w-md text-right">
+                            <p className="text-lg text-gray-600  text-right">
                                 Efficiently curating resumes to identify top talent and ensure a perfect match for organizational needs and role requirements.
                             </p>
                             <button
