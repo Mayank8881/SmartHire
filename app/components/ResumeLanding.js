@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 function ResumeLanding() {
     const router = useRouter();
 
-    const handleStartNowClick = () => {
+    const handleStartClick = () => {
         router.push('/ResumeUpload'); 
     };
 
@@ -19,13 +19,13 @@ function ResumeLanding() {
                         <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#3B82F6]">
                             SmartHire: Resume Shortlisting
                         </h1>
-                        <div className="flex flex-col items-end mr-16">
+                        <div className="flex flex-col object-contain items-end  mr-16">
                             <p className="text-lg text-gray-600 max-w-md text-right">
                                 Efficiently curating resumes to identify top talent and ensure a perfect match for organizational needs and role requirements.
                             </p>
                             <button
-                                onClick={handleStartNowClick}
                                 className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-2"
+                                onClick={handleStartClick}
                             >
                                 Start Now
                             </button>

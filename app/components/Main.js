@@ -19,25 +19,25 @@ function Main() {
                     saving you time and helping you find the perfect candidates and for candidate interview preparation dashboard.
                 </div>
             </div>
-            <div className='flex flex-col md:flex-row mt-0 md:mt-20 lg:mt-0 text-black'>
-                <div className='flex flex-col items-center justify-center w-[350px] h-[480px] md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[420px] bg-[#DEF9FF] mt-16 rounded-xl mx-auto md:mx-4 lg:ml-40'>
+            <div className='flex flex-col mr-36 md:flex-row mt-0 space-x-8  md:mt-20 lg:mt-0 text-black'>
+                <div className='flex flex-col items-center justify-center w-[350px] h-[500px] md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[480px] bg-[#DEF9FF] mt-16 rounded-xl mx-auto md:mx-4 lg:ml-40'>
                     <Image src='/assets/Group 39.png' width={200} height={300} />
                     <p className='text-center text-3xl font-bold text-blue-500'>Resume Shortlisting</p>
-                    <div className="text-center text-muted-foreground w-3/4 md:text-xl mt-1">
-                        Curating resumes efficiently to match top talent with organizational role needs
+                    <div className="text-center text-muted-foreground w-3/4 md:text-lg mt-1">
+                        Curating resumes efficiently to match top talent with organizational role.
                     </div>
-                    <button className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-2" onClick={handleStartNowClick}>
+                    <button className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50  mt-5" onClick={handleStartNowClick}>
                         Click Here
                     </button>
                 </div>
 
-                <div className='flex flex-col items-center justify-center w-[350px] h-[480px] mb-10 md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[420px] bg-[#DEF9FF] mt-16 rounded-xl mx-auto md:mx-4 lg:ml-40'>
+                <div className='flex flex-col items-center justify-center w-[350px] h-[500px] mb-10 md:w-[600px] md:h-[600px] lg:w-[500px] lg:h-[480px] bg-[#DEF9FF] mt-16 rounded-xl mx-auto md:mx-4 lg:ml-40'>
                     <Image src='/assets/Group 40.png' width={230} height={400} />
                     <p className='text-center text-3xl font-bold text-blue-500'>Interview Prep</p>
-                    <div className="text-center text-muted-foreground w-3/4 md:text-xl mt-1">
+                    <div className="text-center text-muted-foreground w-3/4 md:text-lg mt-1">
                         AI-driven interview prep: feedback, skill analysis, progress tracking, alignment.
                     </div>
-                    <button className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-2">
+                    <button className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-5">
                         Click Here
                     </button>
                 </div>
