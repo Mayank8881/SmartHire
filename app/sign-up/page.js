@@ -1,12 +1,27 @@
 "use client"
-import Link from 'next/link'
-import { useState }  from "react"
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+import AuthGuard from '../components/authGuard';
 
 const Page = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+    const router = useRouter();
+
+    // useEffect(() => {
+    //     // Check if user is already logged in
+    //     const checkSession = async () => {
+    //         const session = await getServerSession(authOptions);
+    //         if (session) {
+    //             router.push('/');
+    //         }
+    //     };
+    //     checkSession();
+    // }, [router]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,28 +33,37 @@ const Page = () => {
         }
 
         try {
+            const resUser = await fetch("/api/user-exists", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email }),
+            });
+            
+            const { user } = await resUser.json();
+            if (user) {
+                setError("Email already exists");
+                return;
+            }
+
             const res = await fetch("/api/sign-up", {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    name,
-                    email,
-                    password,
-                }),
+                body: JSON.stringify({ name, email, password }),
             });
 
             if (res.ok) {
-                // Clear input fields
+                // Reset the form and navigate to homepage or login page
                 setName("");
                 setEmail("");
                 setPassword("");
-                setError(""); // Clear error if registration succeeds
-                console.log("Registration successful");
+                setError("");
+                router.push("/");  // Redirect to homepage or login page
             } else {
-                setError("User Registration failed");
-                console.log("User Registration failed");
+                setError("User registration failed");
             }
         } catch (error) {
             setError("Error during registration");
@@ -48,6 +72,7 @@ const Page = () => {
     };
 
     return (
+        <AuthGuard>
         <div className="grid place-items-center">
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <input 
@@ -81,6 +106,7 @@ const Page = () => {
                 </Link>
             </form>
         </div>
+        </AuthGuard>
     );
 };
 
