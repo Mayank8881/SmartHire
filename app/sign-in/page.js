@@ -33,6 +33,7 @@ const SignInPage = () => {
 
             // Redirect to home page after successful login
             router.push("/");
+            console.log("Successfully Sign in")
 
         } catch (err) {
             console.log("Sign-in error:", err);
