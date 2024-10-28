@@ -73,7 +73,7 @@ const Page = () => {
 
     return (
         <AuthGuard>
-        <div className="grid place-items-center">
+        {/* <div className="grid place-items-center">
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <input 
                     value={name}
@@ -105,7 +105,58 @@ const Page = () => {
                     Already have an account? <span>Login</span>
                 </Link>
             </form>
-        </div>
+        </div> */}
+        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
+        <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Create an Account</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <input 
+                value={name}
+                onChange={(e) => setName(e.target.value)} 
+                type="text" 
+                placeholder="Full Name" 
+                required
+                className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            />
+            <input 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+                type="email" 
+                placeholder="Email" 
+                required
+                className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            />
+            <input 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} 
+                type="password" 
+                placeholder="Password" 
+                required
+                className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+            />
+            <button 
+                type="submit" 
+                className="bg-blue-500 text-white font-semibold py-3 rounded hover:bg-blue-600 transition-all transform hover:scale-105"
+            >
+                Register
+            </button>
+            
+            {error && (
+                <div className="text-red-500 text-sm text-center mt-2">
+                    {error}
+                </div>
+            )}
+            
+            <p className="text-center text-gray-600 mt-4">
+                Already have an account?{" "}
+                <Link href="/sign-in" className="text-blue-500 hover:underline transition">
+                    Login
+                </Link>
+            </p>
+        </form>
+    </div>
+</div>
+
         </AuthGuard>
     );
 };
