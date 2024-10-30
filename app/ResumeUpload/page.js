@@ -1,12 +1,27 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 function ResumeUpload() {
     const router = useRouter();
+    const [uploadedResumes, setUploadedResumes] = useState([]);
+    const [skills, setSkills] = useState(''); // State for skills
+    const [experience, setExperience] = useState(''); // State for experience
+    const [education, setEducation] = useState(''); // State for education
+
+    const handleFileChange = (event) => {
+        const files = Array.from(event.target.files);
+        setUploadedResumes((prevResumes) => [...prevResumes, ...files]);
+    };
 
     const handleStartNowClick = () => {
-        router.push('/ShortListed');
+        if (uploadedResumes.length > 1 && skills.trim() && experience.trim() && education.trim()) {
+            router.push('/ShortListed');
+        } else if (uploadedResumes.length <= 1) {
+            alert("Please upload at least 2 files.");
+        } else {
+            alert("Please fill out all job requirements (skills, experience, and education).");
+        }
     };
 
     return (
@@ -33,20 +48,67 @@ function ResumeUpload() {
             </main>
 
             <div className="flex flex-col items-center justify-center w-full p-6">
-                <div className="w-full max-w-[500px]  bg-white mt-6 rounded-xl px-6 py-6 mb-10 text-black">
-                    <h2 className="text-2xl sm:text-3xl font-bold ">Upload Your Resume</h2>
+                <div className="w-full max-w-[500px] bg-white mt-6 rounded-xl px-6 py-6 mb-10 text-black">
+                    <h2 className="text-2xl sm:text-3xl font-bold">Upload Your Resume</h2>
                     <p className="mt-1 text-sm md:text-base">
-                        Supported formats - pdf (max file size - 2MB).
+                        Supported formats - pdf, doc, docx (max file size - 2MB).
                     </p>
-                    <form className="mt-5 flex flex-col sm:flex-row gap-2">
-                        <input type="file" className="file-input file-input-bordered h-10 w-full sm:max-w-xs" />
+
+                    <form className="mt-5 flex flex-col gap-4 sm:gap-6">
+                        {/* Resume Upload Input */}
+                        <input
+                            type="file"
+                            className="file-input file-input-bordered h-10 w-full sm:max-w-xs text-white"
+                            multiple
+                            accept=".pdf, .doc, .docx"
+                            onChange={handleFileChange}
+                        />
+
+                        {/* Uploaded Resume List */}
+                        {uploadedResumes.length > 0 && (
+                            <div className="mt-4">
+                                <h3 className="font-semibold text-lg">Uploaded Resumes:</h3>
+                                <ul className="list-disc pl-5 mt-2">
+                                    {uploadedResumes.map((file, index) => (
+                                        <li key={index}>{file.name}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {/* Skills Input */}
+                        <textarea
+                            value={skills}
+                            onChange={(e) => setSkills(e.target.value)}
+                            className="textarea textarea-bordered h-20 w-full text-white text-base p-2 resize-none sm:resize"
+                            placeholder="Enter required skills"
+                        />
+
+                        {/* Experience Input */}
+                        <textarea
+                            value={experience}
+                            onChange={(e) => setExperience(e.target.value)}
+                            className="textarea textarea-bordered h-20 w-full text-white text-base p-2 resize-none sm:resize"
+                            placeholder="Enter required experience"
+                        />
+
+                        {/* Education Input */}
+                        <textarea
+                            value={education}
+                            onChange={(e) => setEducation(e.target.value)}
+                            className="textarea textarea-bordered h-20 w-full text-white text-base p-2 resize-none sm:resize"
+                            placeholder="Enter required education"
+                        />
+
+                        {/* Submit Button */}
+                        <button
+                            type="button"
+                            onClick={handleStartNowClick}
+                            className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4 sm:mt-2 w-full sm:w-auto"
+                        >
+                            Submit
+                        </button>
                     </form>
-                    <button
-                        onClick={handleStartNowClick}
-                        className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-4 sm:mt-2 w-full sm:w-auto"
-                    >
-                        Submit
-                    </button>
                 </div>
             </div>
         </>
