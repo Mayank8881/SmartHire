@@ -32,10 +32,12 @@ export const authOptions={
             }
         }),
     ],
-        session:{
-            strategy:"jwt"
-
-        },
+    session: {
+        strategy: "jwt",
+        maxAge: 60*5, // Session expires in 1 min
+        updateAge: 15 * 60, // Extend session every 15 minutes
+      },
+      
         secret:process.env.NEXTAUTH_SECRET,
         pages:{
             signIn:"/sign-in"
