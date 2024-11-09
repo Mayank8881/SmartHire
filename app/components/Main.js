@@ -71,10 +71,6 @@ function Main() {
         window.location.href = 'https://prep-ai-hazel.vercel.app/';
     };
 
-    const handleInterviewPrepClick = () => {
-        window.location.href = 'https://prep-ai-hazel.vercel.app/';
-    };
-
     return (
         <div>
             <div className="flex flex-col items-center justify-center w-full mx-auto mt-9 text-black">
@@ -108,8 +104,6 @@ function Main() {
                         AI-driven interview prep: feedback, skill analysis, progress tracking, alignment.
                     </div>
                     <button 
-                        className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-5"
-                        onClick={handleInterviewPrepClick}>
                         className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-5"
                         onClick={handleInterviewPrepClick}>
                         Click Here
