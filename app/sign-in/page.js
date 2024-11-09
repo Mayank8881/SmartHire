@@ -32,7 +32,9 @@ const SignInPage = () => {
             }
 
             // Redirect to home page after successful login
-            router.push("/");
+            // router.push("/");
+            router.push("/", "/", { shallow: true });
+
             console.log("Successfully Sign in")
 
         } catch (err) {
