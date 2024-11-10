@@ -40,7 +40,7 @@ export default function Navbar() {
                         {session && (
                             <div className="flex items-center space-x-4">
                                 <Link href="/profile" className="focus:outline-none">
-                                    <Image src="/assets/person.png" alt="Profile" width={40} height={40} className="rounded-full" />
+                                    <Image src="/assets/Person.png" alt="Profile" width={40} height={40} className="rounded-full" />
                                 </Link>
                                 <Logout />
                             </div>
