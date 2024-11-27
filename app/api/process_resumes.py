@@ -86,7 +86,7 @@ def clean_and_split_text(text):
     except Exception as e:
         return "Error processing skills/education", str(e)
 
-@app.route('/process_resumes', methods=['POST'])
+@app.route('/api/process_resumes', methods=['POST'])
 def process_resumes():
     """Endpoint to process resumes and compute similarity scores."""
     try:
