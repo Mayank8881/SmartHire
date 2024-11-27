@@ -13,7 +13,7 @@ const AuthGuard = ({ children }) => {
         }
 
         if (status === 'authenticated') {
-            router.push('/');
+            router.push('/ResumeLanding');
         } else {
             setLoading(false);
         }
