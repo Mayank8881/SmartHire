@@ -8,6 +8,7 @@ export default function Home() {
     <>
       <div>
         {/* <ResumeLanding /> */}
+        {/* yo */}
         <Main />
       </div>
 
