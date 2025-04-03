@@ -1,219 +1,174 @@
-// "use client"
-// import { signIn } from 'next-auth/react';
-// import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
-// import React, { useState } from 'react';
-// import AuthGuard from '../components/authGuard';
-
-// const SignInPage = () => {
-//     const [email, setEmail] = useState("");
-//     const [password, setPassword] = useState("");
-//     const [error, setError] = useState("");
-//     const router = useRouter();
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         setError("");  // Clear the error message on submit
-//         try {
-//             if (!email || !password) {
-//                 setError("Please fill all the fields");
-//                 return;
-//             }
-
-//             const res = await signIn("credentials", {
-//                 email,
-//                 password,
-//                 redirect: false,
-//             });
-
-//             if (res.error) {
-//                 setError("Invalid Credentials");
-//                 return;
-//             }
-
-//             // Redirect to home page after successful login
-//             // router.push("/");
-//             router.push("/", "/", { shallow: true });
-
-//             console.log("Successfully Sign in")
-
-//         } catch (err) {
-//             console.log("Sign-in error:", err);
-//             setError("Something went wrong. Please try again.");
-//         }
-//     };
-
-//     return (
-//         <>
-//         <AuthGuard>
-//             {/* <div className="grid place-items-center">
-//                 <form onSubmit={handleSubmit} className="flex flex-col">
-//                     <input 
-//                         onChange={(e) => setEmail(e.target.value)} 
-//                         type="email" 
-//                         placeholder="Email" 
-//                         required 
-//                     />
-//                     <input 
-//                         onChange={(e) => setPassword(e.target.value)} 
-//                         type="password" 
-//                         placeholder="Password" 
-//                         required 
-//                     />
-//                     <button type="submit" className="bg-blue-500">Login</button>
-
-//                     {error && (
-//                         <div style={{ color: "red" }}>
-//                             {error}
-//                         </div>
-//                     )}
-
-//                     <Link href="/sign-up">
-//                         Don't have an account? <u>Register</u>
-//                     </Link>
-//                 </form>
-//             </div> */}
-//             <div className="min-h-screen flex items-center justify-center bg-gray-100">
-//     <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
-//         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Sign In</h2>
-//         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-//             <input 
-//                 onChange={(e) => setEmail(e.target.value)} 
-//                 type="email" 
-//                 placeholder="Email" 
-//                 required
-//                 className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-//             />
-//             <input 
-//                 onChange={(e) => setPassword(e.target.value)} 
-//                 type="password" 
-//                 placeholder="Password" 
-//                 required
-//                 className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-//             />
-//             <button 
-//                 type="submit" 
-//                 className="bg-blue-500 text-white font-semibold py-3 rounded hover:bg-blue-600 transition-all transform hover:scale-105"
-//             >
-//                 Login
-//             </button>
-            
-//             {error && (
-//                 <div className="text-red-500 text-sm text-center mt-2">
-//                     {error}
-//                 </div>
-//             )}
-            
-//             <p className="text-center text-gray-600 mt-4">
-//                 Don't have an account?{" "}
-//                 <Link href="/sign-up" className="text-blue-500 hover:underline transition">
-//                     Register
-//                 </Link>
-//             </p>
-//         </form>
-//     </div>
-// </div>
-
-//             </AuthGuard>
-//         </>
-//     );
-// }
-
-// export default SignInPage;
-
 "use client";
 import { signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AuthGuard from "../components/authGuard";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const SignInPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
-    const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const { data: session, status } = useSession();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError(""); // Clear the error message on submit
-        try {
-            if (!email || !password) {
-                setError("Please fill all the fields");
-                return;
-            }
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/ResumeLanding");
+    }
+  }, [status]);
 
-            const res = await signIn("credentials", {
-                email,
-                password,
-                redirect: false,
-            });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(""); // Clear previous error
+    setIsLoading(true);
 
-            if (res.error) {
-                setError("Invalid Credentials");
-                return;
-            }
+    try {
+      if (!email || !password) {
+        setError("Please fill all the fields");
+        setIsLoading(false);
+        return;
+      }
 
-            router.push("/");
-            console.log("Successfully Signed in");
-        } catch (err) {
-            console.log("Sign-in error:", err);
-            setError("Something went wrong. Please try again.");
-        }
-    };
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false, // Prevent NextAuth from handling redirects
+      });
 
-    return (
-        <>
-            <AuthGuard>
-                <div className="min-h-screen flex items-center justify-center bg-gradient-to-br">
-                    <div className="bg-white shadow-lg rounded-xl p-8 w-full max-w-md transform transition-all duration-500 hover:scale-105">
-                        <h2 className="text-3xl font-bold text-center text-gray-700 mb-6">
-                            Welcome Back!
-                        </h2>
-                        <p className="text-center text-gray-500 mb-8">
-                            Sign in to your account and manage your hiring efficiently.
-                        </p>
-                        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                            <input
-                                onChange={(e) => setEmail(e.target.value)}
-                                type="email"
-                                placeholder="Email"
-                                required
-                                className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                            />
-                            <input
-                                onChange={(e) => setPassword(e.target.value)}
-                                type="password"
-                                placeholder="Password"
-                                required
-                                className="p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                            />
-                            <button
-                                type="submit"
-                                className="bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 hover:shadow-lg transition-all transform hover:scale-105"
-                            >
-                                Login
-                            </button>
-                            {error && (
-                                <div className="text-red-500 text-sm text-center mt-2">
-                                    {error}
-                                </div>
-                            )}
-                            <p className="text-center text-gray-600">
-                                Don't have an account?{" "}
-                                <Link
-                                    href="/sign-up"
-                                    className="text-blue-500 hover:underline transition"
-                                >
-                                    Register here
-                                </Link>
-                            </p>
-                        </form>
-                    </div>
+      console.log("SignIn Response:", res);
+
+      if (!res || res.error) {
+        setError("Invalid Credentials");
+        setIsLoading(false);
+        return;
+      }
+
+      // Refresh session and redirect
+      router.push("/ResumeLanding");
+      router.refresh();
+    } catch (err) {
+      console.error("Sign-in error:", err);
+      setError("Something went wrong. Please try again.");
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <AuthGuard>
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50 p-4">
+        <Card className="w-full max-w-md shadow-lg">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-2xl font-bold text-center">
+              Welcome Back
+            </CardTitle>
+            <CardDescription className="text-center">
+              Sign in to continue to your account
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="pl-3 text-gray-700"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="password">Password</Label>
                 </div>
-            </AuthGuard>
-        </>
-    );
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="pl-3 text-gray-700"
+                />
+              </div>
+
+              {error && (
+                <Alert variant="destructive" className="mt-4">
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+
+              <Button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:opacity-90 transition-all"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <span className="flex items-center justify-center">
+                    <svg
+                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      ></circle>
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Signing in...
+                  </span>
+                ) : (
+                  "Sign In"
+                )}
+              </Button>
+            </form>
+          </CardContent>
+
+          <CardFooter className="flex flex-col">
+            <p className="text-center text-gray-600 mt-2">
+              Don't have an account?{" "}
+              <Link
+                href="/sign-up"
+                className="text-blue-600 font-medium hover:text-blue-800 transition-colors"
+              >
+                Create account
+              </Link>
+            </p>
+          </CardFooter>
+        </Card>
+      </div>
+    </AuthGuard>
+  );
 };
 
 export default SignInPage;

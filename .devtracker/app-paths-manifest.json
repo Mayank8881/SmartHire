@@ -1,0 +1,8 @@
+{
+  "/page": "app/page.js",
+  "/api/auth/[...nextauth]/route": "app/api/auth/[...nextauth]/route.js",
+  "/sign-in/page": "app/sign-in/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/ResumeLanding/page": "app/ResumeLanding/page.js",
+  "/ResumeUpload/page": "app/ResumeUpload/page.js"
+}

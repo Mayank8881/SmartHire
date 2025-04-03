@@ -1,93 +1,98 @@
-// import React from 'react';
+// "use client";
+// import React, { useEffect, useState } from 'react';
+// import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+// import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 // const ShortListed = () => {
+//     const [candidates, setCandidates] = useState([]);
+
+//     useEffect(() => {
+//         const data = localStorage.getItem("shortlistedCandidates");
+//         if (data) {
+//             setCandidates(JSON.parse(data));
+//         }
+//     }, []);
+
+//     // Function to get initials from candidate name
+//     const getInitials = (name) => {
+//         return name
+//             .split(' ')
+//             .map(part => part[0])
+//             .join('')
+//             .toUpperCase();
+//     };
+
+//     // Function to generate a random color based on the candidate's name
+//     const getRandomColor = (name) => {
+//         // Use the name as a seed to generate a consistent color for each candidate
+//         const stringToHash = (str) => {
+//             let hash = 0;
+//             for (let i = 0; i < str.length; i++) {
+//                 hash = str.charCodeAt(i) + ((hash << 5) - hash);
+//             }
+//             return hash;
+//         };
+
+//         const hashToColor = (hash) => {
+//             const colors = [
+//                 "bg-red-500", "bg-pink-500", "bg-purple-500", "bg-indigo-500", 
+//                 "bg-blue-500", "bg-cyan-500", "bg-teal-500", "bg-green-500", 
+//                 "bg-yellow-500", "bg-orange-500"
+//             ];
+            
+//             // Use the hash to get a consistent index
+//             const index = Math.abs(hash) % colors.length;
+//             return colors[index];
+//         };
+
+//         return hashToColor(stringToHash(name));
+//     };
+
 //     return (
-//         <>
-//             <div className='flex flex-col space-y-10 px-4 sm:px-7 py-5 text-black'>
-//                 {/* Header */}
-//                 <div className="flex flex-col items-center justify-center w-full mx-auto">
-//                     <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-blue-500">
-//                         Candidate Shortlisting Dashboard
-//                     </h1>
-//                     <div className="text-center text-muted-foreground w-full sm:w-3/4 md:w-2/3 md:text-lg mt-4">
-//                         Here are the eligible candidates ranked by their matching percentage to your job requirements. This list is tailored to meet your specific needs, ensuring you see the most qualified candidates first.
-//                     </div>
-//                 </div>
-
-//                 {/* Card Section */}
-//                 <div className='flex flex-wrap justify-center gap-6'>
-//                     {/* Card 1 */}
-//                     <div className="card card-compact bg-white w-full sm:w-72 md:w-96 border-blue-500 shadow-xl">
-//                         <figure className='mt-5'>
-//                             <img src="/assets/Group 41.png" alt="Candidate" className="object-contain h-32 w-32" />
-//                         </figure>
-//                         <div className="card-body text-center">
-//                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-//                         </div>
-//                     </div>
-//                     {/* Card 2 */}
-//                     <div className="card card-compact bg-white w-full sm:w-72 md:w-96 shadow-xl">
-//                         <figure className='mt-5'>
-//                             <img src="/assets/Group 41.png" alt="Candidate" className="object-contain h-32 w-32" />
-//                         </figure>
-//                         <div className="card-body text-center">
-//                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-//                         </div>
-//                     </div>
-//                     {/* Card 3 */}
-//                     <div className="card card-compact bg-white w-full sm:w-72 md:w-96 shadow-xl">
-//                         <figure className='mt-5'>
-//                             <img src="/assets/Group 41.png" alt="Candidate" className="object-contain h-32 w-32" />
-//                         </figure>
-//                         <div className="card-body text-center">
-//                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-//                         </div>
-//                     </div>
-//                 </div>
-
-//                 {/* Candidate List */}
-//                 <div className='w-full sm:w-3/4 lg:w-2/3 mx-auto'>
-//                     <div className='flex flex-col space-y-4'>
-//                         {/* Header Row */}
-//                         <div className='flex items-center w-full bg-white h-16 border-2 border-[#AADEEF]'>
-//                             <div className='w-1 bg-blue-600 h-full'></div>
-//                             <div className='flex justify-around w-full text-xl font-bold'>
-//                                 <div>S.No</div>
-//                                 <div>Name</div>
-//                                 <div>Percentage</div>
-//                             </div>
-//                         </div>
-
-//                         {/* Candidate 1 */}
-//                         <div className='flex items-center w-full bg-white h-16 border-2 border-[#AADEEF]'>
-//                             <div className='w-1 bg-blue-600 h-full'></div>
-//                             <div className='flex justify-around w-full text-xl'>
-//                                 <div>01</div>
-//                                 <div>XYZ</div>
-//                                 <div>60%</div>
-//                             </div>
-//                         </div>
-
-//                         {/* Candidate 2 */}
-//                         <div className='flex items-center w-full bg-white h-16 border-2 border-[#AADEEF]'>
-//                             <div className='w-1 bg-blue-600 h-full'></div>
-//                             <div className='flex justify-around w-full text-xl'>
-//                                 <div>02</div>
-//                                 <div>ABC</div>
-//                                 <div>40%</div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
+//         <div className='flex flex-col space-y-10 px-4 sm:px-7 py-5 text-black'>
+//             <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-blue-500">
+//                 Candidate Shortlisting Dashboard
+//             </h1>
+//             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+//                 {candidates.map((candidate, index) => {
+//                     const avatarColor = getRandomColor(candidate.name);
+//                     return (
+//                         <Card key={index} className="overflow-hidden">
+//                             <CardHeader className="flex flex-row items-center gap-4 pb-2">
+//                                 <Avatar className="h-12 w-12">
+//                                     <AvatarFallback className={`${avatarColor} text-white`}>
+//                                         {getInitials(candidate.name)}
+//                                     </AvatarFallback>
+//                                 </Avatar>
+//                                 <CardTitle className="text-lg">{candidate.name}</CardTitle>
+//                             </CardHeader>
+//                             <CardContent>
+//                                 <div className="space-y-2">
+//                                     <div className="flex justify-between items-center">
+//                                         <span className="text-sm text-gray-500">Match Score</span>
+//                                         <span className="font-medium">{candidate.score.toFixed(2)}%</span>
+//                                     </div>
+//                                     <div className="w-full bg-gray-200 rounded-full h-2">
+//                                         <div 
+//                                             className="bg-blue-500 h-2 rounded-full" 
+//                                             style={{ width: `${candidate.score}%` }}
+//                                         ></div>
+//                                     </div>
+//                                 </div>
+//                             </CardContent>
+//                         </Card>
+//                     );
+//                 })}
 //             </div>
-//         </>
+//         </div>
 //     );
 // };
 
 // export default ShortListed;
-///////////////////////////////////////////////
 "use client";
 import React, { useEffect, useState } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const ShortListed = () => {
     const [candidates, setCandidates] = useState([]);
@@ -99,137 +104,85 @@ const ShortListed = () => {
         }
     }, []);
 
+    // Function to extract just the filename from a path like "trainResumes/candidate_074.pdf"
+    const getFileName = (path) => {
+        // Split by '/' and get the last part
+        const parts = path.split('/');
+        return parts[parts.length - 1];
+    };
+
+    // Function to get initials from candidate filename
+    const getInitials = (name) => {
+        // Extract the candidate number from something like "candidate_074.pdf"
+        const match = name.match(/candidate_(\d+)/i);
+        return match ? `C${match[1]}` : name.substring(0, 2).toUpperCase();
+    };
+
+    // Function to generate a random color based on the candidate's name
+    const getRandomColor = (name) => {
+        // Use the name as a seed to generate a consistent color for each candidate
+        const stringToHash = (str) => {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return hash;
+        };
+
+        const hashToColor = (hash) => {
+            const colors = [
+                "bg-red-500", "bg-pink-500", "bg-purple-500", "bg-indigo-500", 
+                "bg-blue-500", "bg-cyan-500", "bg-teal-500", "bg-green-500", 
+                "bg-yellow-500", "bg-orange-500"
+            ];
+            
+            // Use the hash to get a consistent index
+            const index = Math.abs(hash) % colors.length;
+            return colors[index];
+        };
+
+        return hashToColor(stringToHash(name));
+    };
+
     return (
         <div className='flex flex-col space-y-10 px-4 sm:px-7 py-5 text-black'>
             <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-blue-500">
                 Candidate Shortlisting Dashboard
             </h1>
-            <div className="flex flex-wrap justify-center gap-6">
-                {candidates.map((candidate, index) => (
-                    <div key={index} className="card card-compact bg-white w-full sm:w-72 md:w-96 shadow-xl">
-                        <div className="card-body text-center">
-                            <h2 className="text-xl font-semibold">{candidate.name}</h2>
-                            <p>Match Percentage: {candidate.score.toFixed(2)}%</p>
-                        </div>
-                    </div>
-                ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {candidates.map((candidate, index) => {
+                    const fileName = getFileName(candidate.name);
+                    const avatarColor = getRandomColor(fileName);
+                    return (
+                        <Card key={index} className="overflow-hidden">
+                            <CardHeader className="flex flex-row items-center gap-4 pb-2">
+                                <Avatar className="h-12 w-12">
+                                    <AvatarFallback className={`${avatarColor} text-white`}>
+                                        {getInitials(fileName)}
+                                    </AvatarFallback>
+                                </Avatar>
+                                <CardTitle className="text-lg">{fileName}</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-sm text-gray-500">Match Score</span>
+                                        <span className="font-medium">{candidate.score.toFixed(2)}%</span>
+                                    </div>
+                                    <div className="w-full bg-gray-200 rounded-full h-2">
+                                        <div 
+                                            className="bg-blue-500 h-2 rounded-full" 
+                                            style={{ width: `${candidate.score}%` }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    );
+                })}
             </div>
         </div>
     );
 };
 
 export default ShortListed;
-//button resume view
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client";
-// import React, { useEffect, useState } from "react";
-
-// const ShortListed = () => {
-//   const [candidates, setCandidates] = useState([]);
-
-//   useEffect(() => {
-//     const data = localStorage.getItem("shortlistedCandidates");
-//     if (data) {
-//       setCandidates(JSON.parse(data));
-//     }
-//   }, []);
-
-//   const openResume = (resumeFile) => {
-//     // Check if the resume is a string (URL or base64)
-//     if (typeof resumeFile === "string") {
-//       window.open(resumeFile, "_blank");
-//     }
-//     // Check if the resume is a File or Blob object
-//     else if (resumeFile instanceof Blob) {
-//       const fileUrl = URL.createObjectURL(resumeFile);
-//       window.open(fileUrl, "_blank");
-//     } else {
-//       console.error("Resume file is not a valid type.");
-//     }
-//   };
-
-//   return (
-//     <div className="flex flex-col space-y-10 px-4 sm:px-7 py-5 text-black">
-//       <h1 className="text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter text-blue-500">
-//         Candidate Shortlisting Dashboard
-//       </h1>
-//       <div className="overflow-x-auto">
-//         <div className="space-y-6">
-//           {candidates.map((candidate, index) => (
-//             <div
-//               key={index}
-//               className="flex flex-col md:flex-row items-center gap-6 bg-white rounded-lg shadow-lg p-6"
-//             >
-//               <div className="flex-1">
-//                 <h2 className="text-xl font-semibold text-gray-800">{candidate.name}</h2>
-//                 <p className="text-gray-600">Match Percentage: {candidate.score.toFixed(2)}%</p>
-//                 <div className="mt-4">
-//                   <button
-//                     className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition"
-//                     onClick={() => openResume(candidate.resume)}
-//                   >
-//                     View Resume
-//                   </button>
-//                 </div>
-//               </div>
-
-//               <div className="w-full md:w-48">
-//                 <button
-//                   className="w-full bg-green-500 text-white py-2 rounded-lg text-sm hover:bg-green-600 transition"
-//                   onClick={() => openResume(candidate.resume)}
-//                 >
-//                   Open Resume
-//                 </button>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default ShortListed;

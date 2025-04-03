@@ -3,7 +3,7 @@ import React from 'react'
 import { signOut } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
 
-const logout = () => {
+const Logout = () => {
     const {data:session}=useSession();
   return (
     <div>
@@ -14,4 +14,22 @@ const logout = () => {
   )
 }
 
-export default logout
+export default Logout
+
+// "use client"
+
+// import { signOut } from "next-auth/react"
+
+// export default function Logout() {
+//   return (
+//     <button
+//       onClick={() => signOut({ callbackUrl: "/" })}
+//       className="text-red-500 hover:text-red-700 block py-2 px-4 rounded-md text-sm"
+//     >
+//       Logout
+//     </button>
+//   )
+// }
+
+
+

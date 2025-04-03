@@ -1,0 +1,49 @@
+{
+  "summary": {
+    "totalTime": "a few seconds",
+    "totalFiles": 1,
+    "totalAdditions": 2,
+    "totalDeletions": 2,
+    "topLanguages": [
+      [
+        "js",
+        24
+      ],
+      [
+        "png",
+        7
+      ],
+      [
+        "json",
+        3
+      ]
+    ],
+    "dependencies": [
+      "bcryptjs",
+      "dev-tracker",
+      "formidable",
+      "mongoose",
+      "next",
+      "next-auth",
+      "react",
+      "react-dom",
+      "zod",
+      "@types/bcryptjs",
+      "@types/react",
+      "daisyui",
+      "postcss",
+      "tailwindcss"
+    ]
+  },
+  "fileDetails": [
+    {
+      "file": "app\\ResumeUpload\\page.js",
+      "additions": 2,
+      "deletions": 2,
+      "changes": 2,
+      "firstModified": "2025-02-02T07:05:06.567Z",
+      "lastModified": "2025-02-02T07:05:09.252Z",
+      "timeSpent": "a few seconds"
+    }
+  ]
+}
