@@ -75,7 +75,7 @@ function ResumeLanding() {
     };
 
     return (
-        <div className="lg:mt-20 mt-10 md:mt-16 ml-5">
+        <div className="lg:mt-20 mt-10 md:mt-16 ml-5 ">
             <div className="md:flex-row items-center justify-between gap-8">
                 <motion.div
                     className="flex lg:justify-end md:justify-center justify-start"
@@ -83,7 +83,7 @@ function ResumeLanding() {
                     animate="visible"
                     variants={containerVariants}
                 >
-                    <div className="w-full md:w-3/4 lg:w-1/2 space-y-6">
+                    <div className="w-full md:w-3/4 lg:w-1/2 space-y-6 mt-20">
                         {/* Animated Heading */}
                         <motion.h1
                             className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#3B82F6]"
@@ -95,7 +95,7 @@ function ResumeLanding() {
                         <div className="flex flex-col lg:items-end md:items-center items-start mr-16">
                             {/* Animated Paragraph */}
                             <motion.p
-                                className="text-lg text-gray-600 lg:text-right md:text-center text-start"
+                                className="text-lg text-gray-600 lg:text-right md:text-center text-center"
                                 variants={textVariants}
                             >
                                 Efficiently curating resumes identifies top talent that aligns
@@ -107,7 +107,7 @@ function ResumeLanding() {
                             {/* Animated Button */}
                             <motion.button
                                 onClick={handleStartNowClick}
-                                className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-2"
+                                className="bg-[#3B82F6] text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 mt-2 "
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 variants={textVariants}
